@@ -1,0 +1,86 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{courier}{}
+\usepackage{fontenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathrsfs}
+
+\usetheme{Warsaw}
+\date{}
+\author[ ]{ }
+\begin{document}
+{\fontfamily{pcr}\selectfont
+\title{\textbf{Perturbation accelerations}}
+\maketitle
+\section{}
+\begin{frame}
+\frametitle{\fontfamily{pcr}\selectfont\textbf{{Analytic solution to Kepler's equation}}}
+
+$$\frac{d^2\vec r}{dt^2}=\frac{-\mu\vec r}{r^3}$$
+$$E-\epsilon\sinh E=-M_\epsilon$$
+$$E-\epsilon\sinh E=-M_k$$
+$$ M_\epsilon = \frac{\mu^{1/2}}{(\vec a)^{3/2}}\,t$$
+$$ M_k = \frac{\mu^{1/2}}{(-\vec a)^{3/2}}\,t$$
+$$ M_p = \frac{\mu^{1/2}}{(2q^3)^{1/2}}\,t$$
+$$a=\frac{2}{r_0}-\frac{V_0^2}{\mu}$$
+\end{frame}
+\begin{frame}
+$$q=a(1-\epsilon)=r_0$$
+
+$$\sigma=\left(\frac{\vec r_0\,\vec v_0}{\mu^{1/2}}\right)$$
+$$p=q(1+\epsilon)$$
+$$p=\vec a(1-\epsilon^2)$$
+$$U_n(\chi,\alpha)=\sum\limits_{k=0}^\infty\frac{(-\alpha)^k\chi^{(n+2k)}}{(n+2k)!}=\int\limits_0^\chi U_{n-1}(\chi,\alpha)d\chi$$
+\end{frame}
+\begin{frame}{\fontfamily{pcr}\selectfont\textbf{{Initial Conditions}}}
+$$\psi(0,t)=\psi_x(0,t)=\psi_x_x(0,t)=0$$
+$$\kappa(s,\xi)=\frac{\mu^(1/2)}{\xi^2s(qs^2+1)}$$
+$$B=cos\left(\frac{\chi}{q^{1/2}}\right)$$
+$$U_3=\psi(\chi,t)=\mu^{1/2}t(1-B)$$
+$$U_1=\chi-\alpha\mu^{1/2}t(1-B)$$
+$$U_0=1-\frac{A\mu^{1/2}\alpha t}{q}$$
+$$U_1-\alpha U_3=\chi$$
+$$`U_0-aU_2=1$$
+$$\chi=\alpha\mu^{1/2}t+\sigma\quad\sigma=(1-\alphaq)U_1$$
+\end{frame}
+\begin{frame}
+$$qU_1(\chi,\alpha)+U_3(\chi,\alpha)=\mu^{1/2}t$$
+$$q(\chi-\alpha\mu^{1/2}t(1-B))+\mu^{1/2}t(1-B)$$
+$$q\chi+\mu^{1/2}t(1-B)(1-\alpha q)=\mu^{1/2}t$$
+$$\sin^2\left(\frac{\chi}{q^{1/2}}\right)+\cos^2\left(\frac{\chi}{q^{1/2}}\right)=1$$
+$$B^2+\frac{A^2}{q}=1$$
+\end{frame}
+\begin{frame}{}
+\frametitle{\fontfamily{pcr}\selectfont\textbf{{Perturbation due to third body}}}
+The perturbation due to a third body is:
+$$a_p=\mu \frac{\vec s - \vec r}{ \|  \vec s - \vec r \|^3}$$
+Where $\mu$ is the gravitational parameter. 
+\begin{figure}[t]
+\includegraphics[width=6cm]{thirdbody.jpg}
+\centering
+\end{figure}
+
+\end{frame}
+\begin{frame}{\fontfamily{pcr}\selectfont\textbf{Perturbation due to atmospheric drag}}
+
+The drag force is determined from the Bernoulli's equation,
+
+$P+\frac{1}{2}\rho v^2+\rho gh=constant$
+
+Also, the definition of pressure is,
+
+$P=\frac{F}{A}$
+
+Solving the above equation for force we get,
+
+$F=(\frac{1}{2}\rho v^2)A$
+
+$\therefore F=\frac{1}{2}\rho CAv^2$
+
+Here, C is the coefficient of drag which is usually determined experimentally.
+\end{frame}
+
+}
+\end{document}
