@@ -1,0 +1,147 @@
+ss{article}\begin{bmatrix}
+	  \usepackage[utf8]{inputenc}\begin{bmatrix}
+	    \usepackage{minted}\begin{bmatrix}
+	      \title{Cryptography Notes}\begin{bmatrix}
+	        \author{nethra.naveen }\begin{bmatrix}
+		  \date{February 2023}\begin{bmatrix}
+		    \begin{bmatrix}
+		      \begin{document}\begin{bmatrix}
+		        \begin{bmatrix}
+			  \maketitle\begin{bmatrix}
+			    \begin{bmatrix}
+			      \section{Introduction}\begin{bmatrix}
+			        Cryptography is the science of keeping data secure from unwanted/untrusted entities. It is the foundation of information security.\begin{bmatrix}
+				  \\Book: Introduction to modern cryptography by Jonathon Katz and Yehuda Lindell\begin{bmatrix}
+				    Applications of cryptography:\begin{bmatrix}
+				      \\1. Public open channel is converted into a secure channel which has three properties: Privacy, Authenticity and Integrity. \begin{bmatrix}
+				        \\Advanced applications: \begin{bmatrix}
+					  \\1) Cryptocurrency\begin{bmatrix}
+					    \\2) Preventing single point of failure: Storing sensitive information among several servers in bits and pieces. Retrieved by a distributed protocol. Advantage: difficult to compromise all servers. Called \textbf{secret share}\begin{bmatrix}
+					      \\Note: Zero knowledge fashion: No additional information leaked in process. Someone who does not have required info should not be allowed. \begin{bmatrix}
+					        \\3) Cloud computing: Allowing input-output privacy. \begin{bmatrix}
+						  \\ Agreement property. \begin{bmatrix}
+						    \\5) Correctness and privacy while mutually distrusting parties are interacting. \begin{bmatrix}
+						      \section{Symmetric Key Encryption}\begin{bmatrix}
+						        Problem 1: Key agreement\begin{bmatrix}
+							  \\Sender and receiver should be able to talk to each other in a public channel securely. A third party evesdropping should not be able to figure out the key outputted by sender and receiver at the end of the protocol by sender and receiver. \begin{bmatrix}
+							    \\Problem 2: Secure communication\begin{bmatrix}
+							      \\Common secret key. Any third party having knowledge of the key should not be able to intercept commnication. Confidentiality and integrity are our requirements. \begin{bmatrix}
+							        \subsection{Types of cryptographic primitives.}\begin{bmatrix}
+								  1) Symmetric key primitive aka Private key cryptography. The key "k" used at both ends and unavailable in public domain.\begin{bmatrix}
+								    \\Pros: Computationally efficient\begin{bmatrix}
+								      \\Con: Key Agreement. \begin{bmatrix}
+								        \\2) Asymmetric Key Primitive aka public-key cryptography: Primitive is operated with two keys. 1 in public domain, 1 available only to receiver.\begin{bmatrix}
+									  \\Pro: No key agreement necessary. \begin{bmatrix}
+									    \\Con: Computationally complex. \begin{bmatrix}
+									      \\In practice: A combination of both is used. \begin{bmatrix}
+									        \subsubsection{Private-key/Symmetric-key Encryption}\begin{bmatrix}
+										  Key k (bit-string) shared by SOME magic mechanism. Sender sends a message 'm' in plaintext. An encryption algorithm creates a cipher 'c' (bit-string) taking message and key as input. Communicated over a public channel to the receiver. At the receiving end, the cipher is decrypted using the scrambled text and the key. \begin{bmatrix}
+										    \\This is called symmetric because the same key is used for both encryption and decryption. \begin{bmatrix}
+										      \\Note: Difference between deterministic and a random algorithm. Deterministic on a certain input will ALWAYS return the same output. This is not guaranteed in a randomized algorithm. \begin{bmatrix}
+										        \\Syntax of a symmetric encryption Scheme(Cipher):\begin{bmatrix}
+											  \\Three algorithms:\begin{bmatrix}
+											    \\1) Gen: This algorithm is the Key egeneration algorithm. It takes no external input. It generates random bitstrings. It is randomized, and hence produces a different bitstring each time. \begin{bmatrix}
+											      \ Syntax:\begin{bmatrix}
+											        $$ Gen() \rightarrow k \in \kappa  $$\begin{bmatrix}
+												  Where $ \kappa K $ is a set of all possible output keys, for example, $\kappa K$ for a 256 bit key will be $2^{256}$.\begin{bmatrix}
+												    \\2) Enc: Encryption Algorithm. Receives plaintext that sender wants to encrypt and key 'k' that $gen$ outputted as input. It is also randomized. It outputs a cipher text "c". \begin{bmatrix}
+												      \ Syntax:\begin{bmatrix}
+												        $$Enc_k(m) \rightarrow c \in C$$\begin{bmatrix}
+													  Where 'C" is the set of all possible cipher texts.\begin{bmatrix}
+													    \\3) Dec: Decryption algorithm. Receives the cipher and key 'k'. outputs the plaintext message m. It is deterministic. \begin{bmatrix}
+													      \ Syntax: \begin{bmatrix}
+													        $$ Dec_k(c):=m\in M $$\begin{bmatrix}
+														  Where "M" is the set of all possible plain texts. \begin{bmatrix}
+														    \subsubsection{How do you use a cipher?}\begin{bmatrix}
+														      The steps of all three algorithms are in the public domain. The key is agreed upon by the receiver by some "magical algorithm (this is a cn with the symmetric key method) at the beginning of the session. The receiver will know the encryption process and thus the decryption process. with the knowledge of the key, the receiver can decode the message. \begin{bmatrix}
+														        \\ \textbf{Note: Correctness and privacy}\begin{bmatrix}
+															  \\Correctness:\begin{bmatrix}
+															    \\ for every $k \in K$ and $m \in M$, the following should hold true: \begin{bmatrix}
+															      $$Dec-k(Enc_k(m) :=m$$\begin{bmatrix}
+															        \\ Privacy:\begin{bmatrix}
+																  Cipher should not reveal any information about m, i,e, Any third party that may have intercepted the cipher should not give any information on the receiver.\begin{bmatrix}
+																    \subsubsection{Challenges in Formalizing the Privacy definition}\begin{bmatrix}
+																      Attempt 1) An encryption process is secure if the cipher text does not reveal the underlying key. \begin{bmatrix}
+																        \\Loophole: An enc algorithm outputs the exact plain text message.\begin{bmatrix}
+																	  \\Attempt 2) An encryption process is secure if the cipher text does not reveal anything about the underlying plain text. \begin{bmatrix}
+																	    \\Loophole: An enc algorithm that contains 1% of the plaintext\begin{bmatrix}
+																	      \\Attempt 3) An encryption process is secure if it does not reveal any character of the underlying plaintext.\begin{bmatrix}
+																	        \\Loophole: An enc algorithm where cipher text might reveal range of plain text: Whether it is less than or greater than a particular threshold. \begin{bmatrix}
+																		  \\ Attempt 4) Secure if cipher text reveals no meaningful information about the underlying plaintext.\begin{bmatrix}
+																		    \\Loophole: Notion of meaningful information varies between applications. \begin{bmatrix}
+																		      \\ Attempt 5: An encryption process is secure if the cipher text does not help compute any function of the underlying plaintext. \begin{bmatrix}
+																		        \\Loophole: 1) No way to formalize whether a given cipher text helps compute a function of the underlying plaintext. 2) The capabilities and the intent of the adversary are not \begin{bmatrix}
+																			  made clear.\begin{bmatrix}
+																			    \subsubsection{Attack Models}\begin{bmatrix}
+																			      All the attack models have the same in all these attack models.We have a sender and the receiver who have agreed upon some common key by running the key generation algorithm The adversary or the bad guy or the attacker is not aware of the key and the adversary has interceptedonly the ciphertext.\begin{bmatrix}
+																			        \\ \textbf{1) Ciphertext only model}\begin{bmatrix}
+																				  \\This is the simplest possible attack scenario. Common key.  Attacker is aware of the enc algorithm and has access to ciphertext. No additional information is available to the attacker. \begin{bmatrix}
+																				    \\ \textbf{2) Known Plaintext Attack (KPA)}\begin{bmatrix}
+																				      \\Additional information compared to previous model:\begin{bmatrix}
+																				        Aware of the set of (message, ciphertext) pairs under the key and a fresh message is sent under THE SAME KEY. The goal of the attacker is to decrypt the message. The message sent might already exist in the set of messages the attacker is in possession of. Essentially, the attacker posesses several encryptions of previous messages along with this one fresh message.\begin{bmatrix}
+																					  \\ \textbf{3) Chosen Plain-Text Attack (CPA)}\begin{bmatrix}
+																					    \\ Encryption Oracle service: The adversary somehow influences the sender to send a message of the adversary's choice, unbeknownst to the sender. The adversary does not have the key, but it does have access to any number of ciphertexts within a reasonable amount of time (polynomially bounded). The attacker then builds a dictionary of ciphertext pairs. The CPA model allows the adversary to see encryption of those messages in advance by getting an encryption oracle service. The goal of the attacker is to compute some function of the message which has been encrypted in this fresh ciphertext. The CPA Attack model is active in nature: The adversary also needs to change the context of the cipher. It is no onger simply evesdropping. \begin{bmatrix}
+																					      \\ \textbf{Chosen Cipher-Text Attack (CCA)}\begin{bmatrix}
+																					        \\ This is the most powerful attack. The attacker has both an encryption Oracle AND  A Decryption Oracle: It can submit any ciphertext of it's choice and it can influence the receiver to decrypt the ciphertext for it. There is no restriction in the order of the encryption or decryption service. \begin{bmatrix}
+																						  \\ The goal of the adversary is to compute that message m which has been freshly encryptedusing the help of the database that is available to the attacker.\begin{bmatrix}
+																						    \subsubsection{Kerckhoff's principle}\begin{bmatrix}
+																						      \textbf{A cryptosystem should be secure if everything about a system is public knowledge except a key.}\begin{bmatrix}
+																						        \\ \begin{center}\begin{bmatrix}
+																							      aka\begin{bmatrix}
+																							        \end{center}\begin{bmatrix}
+																							        The secrecy of a system should ONLY rely on the secrecy of the key. \begin{bmatrix}
+																								  \\Importance: It is easier to keep a key a secret, as it is much smaller. Also, an algorithm can be leaked or reverse engineered. A key is also easy to replace. It is not feasible to assign a secret pair of algorithms fo every pair of parties. Encryption and decryption algorithms are subject to public scrutiny and is hence more likely to be more secure. \begin{bmatrix}
+																								    \begin{bmatrix}
+																								      \section{Historical Ciphers and their Cryptanalysis}\begin{bmatrix}
+																								        \subsubsection{Shift Cipher}\begin{bmatrix}
+																									  The plaintext and the Ciphertext characters beong to a natural language. The encryption process is to shift each plain-text character by "k" positions forward. The decrypton process shifts them Backward. The value of k belongs to the set [0,25].\begin{bmatrix}
+																									    $$[a,z] \rightarrow [a,2]$$ \begin{bmatrix}
+																									      $$ \kappa k =[0,25] $$\begin{bmatrix}
+																									        $$ M = C= set \ of \ strings \ over \ [0,25] $$\begin{bmatrix}
+																										  Encryption:\begin{bmatrix}
+																										    $$c-i := (m_i +k)mod 26$$\begin{bmatrix}
+																										      Decryption:\begin{bmatrix}
+																										        $$ m_i := (c_i-k) mod 26 $$\begin{bmatrix}
+																											  $m_i$ and k are unknown to the attacker. The goal of the attacker is to figure out what they are. Brute force might work for the attacker. They will know the message is right when it is meaningful. \begin{bmatrix}
+																											    \\ Takeaway: \textbf{Sufficient key-space principle.} Any secure cipher must have a key space that is not vulnerable to exhaustive search. \begin{bmatrix}
+																											      \subsubsection{Mono-Alphabetic substitution cipher}\begin{bmatrix}
+																											        The key is a secret permutation that makes a one-one mapping of a-z(1-25) to a-z. The set of possible keys is $26!=2^{88}$\begin{bmatrix}
+																												  \\Cryptanalyisis: Brute force will not work, however, \textbf{Frequency Analysis} will work. This mode of attack works with any natural language. In long english text, we know that e, 'th', etc will be most used. Most frequently occuring cipher text characters will be similar to most important letters/combination of letters occur. \begin{bmatrix}
+																												    \subsubsection{Poly-Alphabetic Substitution aka Vigenere Cipher}\begin{bmatrix}
+																												      Invoke multiple instances of shift cipher: one plaintext character is mapped to MULTIPLE cipher text characters. This is how it works: \begin{bmatrix}
+																												        \\The key space will be a string of length t where t is randomly selected. The key generation algorithm will output a uniformly random key k= (k1, k2.....kt). The plaintext will then be divided into blocks of length t each. each index of the block will be shifted depending on the index of the key. For example:\begin{bmatrix}
+																													  \\key k=(1,3)\begin{bmatrix}
+																													    \\plaintext=abcd will get turned into ab|cd\begin{bmatrix}
+																													      \\ab will get turned to (a+1)(b+3) $\rightarrow$ be\begin{bmatrix}
+																													        \\similarly, cd will get turned to (c+1)(d+3) $\rightarrow$ df\begin{bmatrix}
+																														  \\So our cipher is becf\begin{bmatrix}
+																														    \\Vice versa for decryption. \begin{bmatrix}
+																														      \\ \textbf{CRYPTANALYSIS}\begin{bmatrix}
+																														        \\ \textbf{Stage 1:} Determine the length of the unknown key k\begin{bmatrix}
+																															  \\ \textbf{Stage 2:} Try to determine k1...kt of the key k by t independent instances of letter frequency analyisis.\begin{bmatrix}
+																															    \\Step 1: set i=1\begin{bmatrix}
+																															      \\Step 2: extract the ciphertext characters at the i, i+t, (i+2t) position until the end of the ciphertext\begin{bmatrix}
+																															        \\Step 3: Perform frequency analysis on these instances\begin{bmatrix}
+																																  \\Step 4: repeat for i=i+1\begin{bmatrix}
+																																    \subsubsection{Classical Vs Modern Cryptography}\begin{bmatrix}
+																																      Classical Cryptography was an art  whereas Modern cryptography has a strong scientific foundation and principle.\begin{bmatrix}
+																																        \\ \textbf{Principles of modern Cryptography}\begin{bmatrix}
+																																	  \\ 1) Formal Security Definitions\begin{bmatrix}
+																																	    \\ 2) Precisely stating any assumption under a construction\begin{bmatrix}
+																																	      \\ 3) Rigorous proof of security\begin{bmatrix}
+																																	        \subsection{Perfect Security}\begin{bmatrix}
+																																		  Definition of Perfect Security: Aka unconditional security, Information-Theoretic security\begin{bmatrix}
+																																		    \\ Security Model: Symmetric key encryption, CPA Attack model. This model is \textbf{computationally unbounded} aka we make 0 assumptions on the attacker's computing power. Anything is possible.\begin{bmatrix}
+																																		      \\ Informal Definiton: Irrespective of any prior information the attacker may be in possession of, the cipher should leak no new additional information about the plain-text. \begin{bmatrix}
+																																		        \\The attacker has the following information: The message space, the key space and the cipher space. The cipher is publicly known. \begin{bmatrix}
+																																			  probability distribution on $\kappa$: Induced on gen(). It is a uniform distribution. \begin{bmatrix}
+																																			    Probability that Gen outputs k from $\kappa$:\begin{bmatrix}
+																																			      $$P(\kappa =k :=/||kappa)$$\begin{bmatrix}
+																																			         Probability distribution over the plaintext space:\begin{bmatrix}
+																																				    \\Any prior information about the underlying plain text\begin{bmatrix}
+																																				       \\P[M=m]: Probability that the underlying plaintext\begin{bmatrix}
+																																				          \\P[C=c]=Probability with which the cipher text 'c' will be outputted. \begin{bmatrix}
+																																					     \subsubsection{Original Definition of Perfect Security}\begin{bmatrix}
+																																					        An encryption Scheme(Gen, enc, Dec) over a plain text 'M' is perfectly secure if for \textbf{every probability distribution} over M and K, every plain text M and every cipher text c $\in$ C, the following holds: \begin{bmatrix}
+																																						   $$P[M=m|C=c]=P[M=m]$$\begin{bmatrix}
+																																						      Interpretation: The probability of knowing the plain text remains the same before and after seeing the cipher text. 
