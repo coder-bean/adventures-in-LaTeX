@@ -1,0 +1,126 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{courier}{}
+\usepackage{fontenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usetheme{Berkeley}
+\usecolortheme{seahorse}
+\date{}
+\author[ ]{ }
+\begin{document}
+{\fontfamily{pcr}\selectfont
+\title{\textbf{Quantum Key distribution: The BB84 Protocol}}
+\maketitle
+\section{}
+\begin{frame}
+\frametitle{\fontfamily{pcr}\selectfont\textbf{{Introduction}}}
+\begin{itemize}
+    \item What is encryption? Why do we need it?
+    \item Limitations of classic cryptography in the Quantum Era
+    \item What is Quantum key distribution?
+    \item The BB84 protocol: A secure QKD solution
+\end{itemize}
+\end{frame}
+\begin{frame}
+ \frametitle{\fontfamily{pcr}\selectfont\textbf{{Prerequisite: The principles of quantum mechanics}}}
+ \begin{itemize}
+     \item Superposition
+     \item Entanglement
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{}
+\frametitle{\fontfamily{pcr}\selectfont\textbf{{Quantum Bits}}}
+\begin{itemize}
+    \item What is a qubit?
+    \item Qubits and the principle of superposition
+    \item Classical and Quantum States
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{\fontfamily{pcr}\selectfont\textbf{{The BB84 Protocol}}}
+\begin{itemize}
+    \item Polarization of Photons
+    \item Phases of the BB84 protocol: \begin{itemize}
+        \item Quantum Transmission
+        \item Classical Post Processing
+        \item Security
+    \end{itemize}
+        
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{\fontfamily{pcr}\selectfont\textbf{{Qubit Transmission}}}
+\\1. Alice chooses a string of N random classical bits $X_1,...,X_N $.
+\\2. Alice chooses a random sequence of polarization bases
+\\3. Alice encodes her bit string into a collection of photons with polarization
+according to the chosen bases
+\\4. When Bob receives the photons he randomly decides for each photon whether to measure it in the rectilinear or the diagonal basis to obtain classical bits. After this step, Alice and Bob both hold a classical bit string, denoted $X = (X_1,...,X_N)$ for Alice and $Y = (Y_1,...,Y_N )$ for Bob.
+This is called the raw key pair
+\end{frame}
+\begin{frame}
+\frametitle{\fontfamily{pcr}\selectfont\textbf{{Qubit Transmission (contd.)}}}
+\includegraphics[scale=0.5]{image.png}
+$$The \ systematic \ Diagram \ of \ QKD-BB84 \ protocol$$
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\fontfamily{pcr}\selectfont\textbf{{Classical Post Processing}}}
+\\5. Bob publicly announces the bases he has chosen to measure the photons Alice
+has sent. Alice compares Bob’s bases to the ones she used and says which bases
+Bob has chosen correctly, i.e., in which cases their choices coincide. Alice and
+Bob discard all bits for which the encoding and measurement bases are not the
+same. This is called the sifting step.
+\\6. The next step is the parameter estimation step, where Alice and Bob want to
+compute a guess for the error rate in the quantum channel, i.e., the fraction of positions i where Xi and Yi disagree. To achieve this, Bob reveals some bits of
+his key at random. 
+\end{frame}
+
+\begin{frame}
+\frametitle{\fontfamily{pcr}\selectfont\textbf{{Classical Post Processing (contd.)}}}
+In case of no eavesdropping, these bits should be the same
+as Alice’s bits and she confirms them.
+\\7. To compute the final key, Alice and Bob perform certain steps to correct errors
+in their keys and increase the secrecy of their key. These steps are called error
+correction. The second step is privacy amplification, which is a procedure that
+minimizes Eve’s knowledge of the key.
+\end{frame}
+
+\begin{frame}
+\frametitle{\fontfamily{pcr}\selectfont\textbf{{Security of the BB84 Protocol}}}
+\begin{itemize}
+    \item Linear nature of quantum mechanics
+    \item Hesenberg's uncertainty principle
+    \item cloning theorem
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{\fontfamily{pcr}\selectfont\textbf{{Challenges and Considerations}}}
+\begin{itemize}
+    \item Quantum Noise
+    \item Man-in-the-middle attacks
+\end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{\fontfamily{pcr}\selectfont\textbf{{Conclusion}}}
+
+\textbf{Sources:}
+\begin{itemize}
+    \item Quantum Key Distribution - Ramona Wolf
+    \item Qiskit.org/learn
+    \item Quantum Key Distribution-Tahir Sajjad Butt, Javed Ali
+\end{itemize}
+$$$$
+$$ \textbf{Thank you for your Attention!}$$
+\end{frame}
+
+\end{document}
