@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\date{June 2023}
+\usepackage{tikz}
+\begin{document}
+\usetikzlibrary{shapes.geometric, arrows}
+
+$$$$
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black,]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\begin{tikzpicture}[node distance=1cm]
+
+\node (start) [startstop] {Start};
+\node (in1) [io, below of=start, yshift=-0.5 cm] {Read initial state vector,ephemerides};
+\node (pro1) [process, below of=in1, yshift=-0.5 cm] {Calculate acceleration of satellite, add perturbation accelerations};
+\node (pro2) [process, below of=pro1, yshift=-0.5 cm] {Correct acceleration of satellite};
+\node (pro3) [process, below of=pro2, yshift=-0.5 cm] {Equate to acceleration found due to mathematical model to find an ODE};
+\node (pro4) [process, below of=pro3, yshift=-0.5 cm] {Integrate using chosen integrator to find intermediae values};
+\node (ou) [io, below of=pro4, yshift=-0.5 cm] {Output final acceleration};
+\node (stop) [startstop, below of=ou, yshift=-0.5 cm] {Stop};
+\draw [arrow] (start) -- (in1);
+\draw [arrow] (in1) -- (pro1);
+\draw [arrow] (pro1) -- (pro2);
+\draw [arrow] (pro2) -- (pro3);
+\draw [arrow] (pro3) -- (pro4);
+\draw [arrow] (pro4) -- (ou);
+\draw [arrow] (ou) -- (stop);
+\end{tikzpicture}
+\end{document}
