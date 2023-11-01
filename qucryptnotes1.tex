@@ -1,1 +1,50 @@
+\documentclass{scrartcl}
+\usepackage{braket}
+\usepackage{amsmath}
+\begin{document}
+\title{An inroduction to Quantum Cryptography}
 
+\subsection{What is a Qubit?}
+A bit is the standard unit of computation for computers. Mathematically, a bit may be represented as:
+	\begin{equation} \ket{0}=\begin{pmatrix} 1\\0 \end{pmatrix} \ and \ \ket{1}=\begin{pmatrix} 0\\1 \end{pmatrix} \end{equation}
+Quantum bits, however, may exist as a superposition of these two states, and are thus represented by
+	\begin{equation} \alpha * \begin{pmatrix} 1\\0 \end{pmatrix} \ + \ \beta * \begin{pmatrix} 0\\1 \end{pmatrix} \end{equation}
+A quantum vector is $\ket{\Psi} = \begin{pmatrix} \alpha\\ \beta \end{pmatrix}$ and is calculted as:
+	\begin{equation} \ket{\psi} = \alpha \ket{0} + \beta \ket{1} \end{equation}
+		$\alpha$ and $\beta$ represent the amplitudes while $\ket{0}$ and $\ket{1}$ form the standard basis. $\alpha^2$ and $\beta^2$ are the probabilities that the system measures as state $\ket{0}$ or $\ket{1}$ respectively. Thus, $\alpha^2 + \beta^2$ must be 1.  
+The inner product of $\psi$ with itself is given by:
+	\begin{equation} \| \psi \| = \begin{pmatrix} \alpha \\ \beta \end{pmatrix} * \begin{pmatrix} \alpha* & \beta* \end{pmatrix} \end{equation}
+		
+		
+
+
+
+		\subsection{A system of multiple qubits}
+
+Let us say we are working with 'n' Qubits. Should we want to represent an 'n' bit system, we would have $2^n$ possible bitstrings. Since we are working with qubits, our system will now be a vector space of dimension $2^n$. The bases are orthonormal, using the standard bases. 
+\\
+\textbf{Example: 2 qubit system}
+\\
+The vector space will have a dimension of $2^2=4$ vectors, with the basis:
+\begin{equation} \ket{00}= \begin{pmatrix} 1\\0\\0\\0 \end{pmatrix}, \ \ket{01}= \begin{pmatrix} 0\\1\\0\\0 \end{pmatrix}, \ \ket{10}= \begin{pmatrix} 0\\0\\1\\0 \end{pmatrix}, \ \ket{11}=\begin{pmatrix} 0\\0\\0\\1 \end{pmatrix} \end{equation}
+	Each vector in the vector space is some linear combination of these vectors. 
+\\
+\textbf{EPR Pair}
+An EPR pair is the normalised comnbination of the qubits $ \ket{00}$ and $\ket{11}$, as:
+\begin{equation} \ket{\psi}=\ket{EPR}=\frac{1}{\sqrt{2}} \ket{00} + \ket{11} \end{equation}
+	\subsection{The bases}
+There are two bases we will m ainly be working with, the \textbf{standard basis} ($\ket{0}$ and $\ket{1}$) and the \textbf{Hadamard Basis} ($\ket{+} $ and$ \ket{-}$
+The Hadamard basis is the equal superposition of the standard basis, i.e 
+\begin{equation}
+	\ket{+}=\frac{1}{\sqrt{2}} \big( \ket{0}+\ket{1} \big), \ \ \ket{-}=\frac{1}{\sqrt{2}} \big( \ket{0}- \ket{1} \big) 
+\end{equation}
+
+This gives us
+\begin{equation}
+	 \ket{+}=\frac{1}{\sqrt{2}} \begin{bmatrix} 1 \\ 1 \end{bmatrix}, \ \ \ket{-}=\frac{1}{\sqrt{2}} \begin{bmatrix} 1 \\ -1 \end{bmatrix}\end{equation}\subsection{Tensor Product} 
+		 To combine the states of two qubits, we use a tensor product. A tensor product is calculated by multiplying each element of a vector with each element of the other.
+		 For example, consider two qubits, $\ket{\psi}_a=\begin{bmatrix} \alpha_a\\ \beta_a \end{bmatrix}$ and $\ket{\psi}_b=\begin{bmatrix} \alpha_b \\ \beta_b \end{bmatrix}$. each of these vectors are two dimensional.A combination of these vectors would be four dimensional, and equal to:
+	 \begin{equation} \ket{\psi}_a \otimes \ket{\psi}_b = \begin{bmatrix} \alpha_a \ket{\psi}_b \\  \beta_a \ket{\psi}_b \end{bmatrix} = \begin{bmatrix} \alpha_a \alpha_b \\ \alpha_a \beta_b \\ \alpha_b \beta_a \\ \beta_a \beta_b \end{bmatrix}
+			    \end{equation}
+\\Tensor products are distributive and associative but NOT commutative. 
+\end{document}
